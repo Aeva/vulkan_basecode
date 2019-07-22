@@ -1,6 +1,6 @@
 #pragma once
 #include "glue/errors.h"
-#include "glue/vulkan_boilerplate.h"
+#include "glue/vk_boilerplate.h"
 #include <vector>
 
 

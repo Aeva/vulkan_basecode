@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Glue">
       <UniqueIdentifier>{536779ea-e498-4cf4-9994-93e2c8c65d90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{bbe01c9a-6c71-4e84-8b40-f10a8ea9fd03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glue\init.cpp">
@@ -27,16 +30,39 @@
     <ClCompile Include="demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="glue\vk_device.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="glue\vk_instance.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="glue\vk_physical_device.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="glue\vk_swapchain.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glue\errors.h">
       <Filter>Source Files\Glue</Filter>
     </ClInclude>
-    <ClInclude Include="glue\vulkan_boilerplate.h">
-      <Filter>Source Files\Glue</Filter>
-    </ClInclude>
     <ClInclude Include="demo.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="glue\vk_boilerplate.h">
+      <Filter>Source Files\Glue</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\hello.vs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="shaders\hello.fs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="build_shaders.py">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

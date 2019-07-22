@@ -111,6 +111,9 @@
       <AdditionalLibraryDirectories>C:\Users\aeva\Libraries\glfw-3.3.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.1.108.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>python3 build_shaders.py</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -149,16 +152,28 @@
       <AdditionalLibraryDirectories>C:\Users\aeva\Libraries\glfw-3.3.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.1.108.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>python3 build_shaders.py</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="demo.cpp" />
     <ClCompile Include="glue\errors.cpp" />
     <ClCompile Include="glue\init.cpp" />
+    <ClCompile Include="glue\vk_device.cpp" />
+    <ClCompile Include="glue\vk_instance.cpp" />
+    <ClCompile Include="glue\vk_physical_device.cpp" />
+    <ClCompile Include="glue\vk_swapchain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="demo.h" />
     <ClInclude Include="glue\errors.h" />
-    <ClInclude Include="glue\vulkan_boilerplate.h" />
+    <ClInclude Include="glue\vk_boilerplate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build_shaders.py" />
+    <None Include="shaders\hello.fs.glsl" />
+    <None Include="shaders\hello.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

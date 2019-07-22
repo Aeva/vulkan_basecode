@@ -10,6 +10,8 @@ const VkSurfaceFormatKHR SurfaceFormatHDR = { VK_FORMAT_R16G16B16A16_SFLOAT, VK_
 
 
 VkSwapchainKHR SwapChain;
+VkFormat SwapChainFormat;
+VkExtent2D SwapChainExtent;
 std::vector<VkImage> SwapChainImages;
 std::vector<VkImageView> SwapChainImageViews;
 uint32_t BackBufferIndex = 0;
@@ -19,6 +21,57 @@ VkSemaphore BackBufferReady;
 VkSwapchainKHR GetSwapChain()
 {
 	return SwapChain;
+}
+
+
+VkViewport BasicViewport()
+{
+	VkViewport Viewport = {};
+	Viewport.x = 0.0f;
+	Viewport.y = 0.0f;
+	Viewport.width = (float)SwapChainExtent.width;
+	Viewport.height = (float)SwapChainExtent.height;
+	Viewport.minDepth = 0.0f;
+	Viewport.maxDepth = 1.0f;
+	return Viewport;
+}
+
+
+VkRect2D BasicScissor()
+{
+	VkRect2D Scissor = {};
+	Scissor.offset = { 0, 0 };
+	Scissor.extent = SwapChainExtent;
+	return Scissor;
+}
+
+
+VkPipelineViewportStateCreateInfo BasicPipelineViewportState(VkViewport* Viewport, VkRect2D* Scissor)
+{
+	VkPipelineViewportStateCreateInfo CreateInfo = {};
+	CreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	CreateInfo.pNext = nullptr;
+	CreateInfo.flags = 0;
+	CreateInfo.viewportCount = 1;
+	CreateInfo.pViewports = Viewport;
+	CreateInfo.scissorCount = 1;
+	CreateInfo.pScissors = Scissor;
+	return CreateInfo;
+}
+
+
+VkAttachmentDescription BasicSwapChainAttacmentDesc()
+{
+	VkAttachmentDescription Attachment;
+	Attachment.format = SwapChainFormat;
+	Attachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	Attachment.loadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	Attachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+	Attachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	Attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	Attachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	Attachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+	return Attachment;
 }
 
 
@@ -81,6 +134,9 @@ StatusCode SetupSwapChain(VkSurfaceKHR Surface, const bool bOutputHDR)
 	SwapChainCreateInfo.presentMode = PresentMode;
 	SwapChainCreateInfo.clipped = VK_TRUE;
 	SwapChainCreateInfo.oldSwapchain = VK_NULL_HANDLE;
+
+	SwapChainFormat = SwapChainCreateInfo.imageFormat;
+	SwapChainExtent = SwapChainCreateInfo.imageExtent;
 
 	VkResult CreationResult = vkCreateSwapchainKHR(GetDevice(), &SwapChainCreateInfo, nullptr, &SwapChain);
 	if (CreationResult != VK_SUCCESS)

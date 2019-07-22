@@ -7,6 +7,7 @@
 namespace RenderingExperiment
 {
 	StatusCode Setup();
+	void Teardown();
 	void Render();
 
 	extern const std::vector<const char*> DeviceExtensions;

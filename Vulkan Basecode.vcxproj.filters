@@ -42,6 +42,12 @@
     <ClCompile Include="glue\vk_swapchain.cpp">
       <Filter>Source Files\Glue</Filter>
     </ClCompile>
+    <ClCompile Include="glue\vk_misc.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="glue\vk_shader.cpp">
+      <Filter>Source Files\Glue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glue\errors.h">

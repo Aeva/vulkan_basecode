@@ -40,23 +40,6 @@ StatusCode SetupGLFW()
 }
 
 
-StatusCode DemoSetup()
-{
-	//glUseProgram(0);
-	RETURN_ON_FAIL(RenderingExperiment::Setup());
-	return StatusCode::PASS;
-}
-
-
-void DrawFrame()
-{
-	RenderingExperiment::Render();
-
-	//glfwSwapBuffers(Window);
-	glfwPollEvents();
-}
-
-
 #define QUIT_ON_FAIL(Expr) if (Expr == StatusCode::FAIL) return 1;
 
 
@@ -73,21 +56,23 @@ int main() {
 	{
 		rdoc_api->StartFrameCapture(NULL, NULL);
 #endif
-		QUIT_ON_FAIL(DemoSetup());
+		QUIT_ON_FAIL(RenderingExperiment::Setup());
 
 #if !RENDERDOC_CAPTURE_AND_QUIT
 		std::cout << "Starting main loop...\n";
 		while (!glfwWindowShouldClose(Window) && !GetHaltAndCatchFire())
 #endif
 		{
-			DrawFrame();
+			RenderingExperiment::Render();
 			Present();
+			glfwPollEvents();
 		}
 #if RENDERDOC_CAPTURE_AND_QUIT
 		rdoc_api->EndFrameCapture(NULL, NULL);
 	}
 #endif
 
+	RenderingExperiment::Teardown();
 	TeardownSwapChain();
 	vkDestroySwapchainKHR(GetDevice(), GetSwapChain(), nullptr);
 	vkDestroyDevice(GetDevice(), nullptr);

@@ -10,18 +10,34 @@ const int ScreenWidth = 1024;
 const int ScreenHeight = 768;
 
 
-extern StatusCode SetupInstance();
-extern VkInstance GetInstance();
+StatusCode SetupInstance();
+VkInstance GetInstance();
 
-extern StatusCode SetupPhysicalDevice();
-extern VkPhysicalDevice GetPhysicalDevice();
+StatusCode SetupPhysicalDevice();
+VkPhysicalDevice GetPhysicalDevice();
 
-extern StatusCode SetupDevice(VkSurfaceKHR Surface);
-extern VkDevice GetDevice();
-extern VkQueue GetGraphicsQueue();
-extern VkQueue GetPresentQueue();
+StatusCode SetupDevice(VkSurfaceKHR Surface);
+VkDevice GetDevice();
+VkQueue GetGraphicsQueue();
+VkQueue GetPresentQueue();
 
-extern StatusCode SetupSwapChain(VkSurfaceKHR Surface, const bool bOutputHDR = false);
+StatusCode SetupSwapChain(VkSurfaceKHR Surface, const bool bOutputHDR = false);
 VkSwapchainKHR GetSwapChain();
-extern void TeardownSwapChain();
-extern void Present();
+VkViewport BasicViewport();
+VkRect2D BasicScissor();
+VkPipelineViewportStateCreateInfo BasicPipelineViewportState(VkViewport* Viewport, VkRect2D* Scissor);
+VkAttachmentDescription BasicSwapChainAttacmentDesc();
+void TeardownSwapChain();
+void Present();
+
+StatusCode CreateShaderModule(const char* FileName, VkShaderModule& ShaderModule);
+VkPipelineShaderStageCreateInfo BasicShaderStageCreateInfo(VkShaderModule ShaderModule, VkShaderStageFlagBits Stage);
+
+VkPipelineRasterizationStateCreateInfo BasicRasterizationStateCreateInfo();
+VkPipelineMultisampleStateCreateInfo BasicMultisampleStateCreateInfo();
+VkPipelineDepthStencilStateCreateInfo BasicDepthStencilStateCreateInfo();
+VkPipelineColorBlendAttachmentState BasicColorBlendAttachmentState();
+VkPipelineColorBlendStateCreateInfo BasicColorBlendStateCreateInfo(VkPipelineColorBlendAttachmentState* Attachments);
+VkPipelineLayoutCreateInfo BasicLayoutCreateInfo();
+VkAttachmentReference BasicAttachmentRef();
+VkSubpassDescription BasicSubpassDesc(VkAttachmentReference* AttachmentRef);

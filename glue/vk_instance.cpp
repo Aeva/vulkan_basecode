@@ -46,8 +46,26 @@ StatusCode SetupInstance()
 	CreateInfo.enabledExtensionCount = (uint32_t)RequiredExtensions.size();
 	CreateInfo.ppEnabledExtensionNames = RequiredExtensions.data();
 #if DEBUG_BUILD
-	const std::vector<const char*> ValidationLayers = {
-		"VK_LAYER_KHRONOS_validation"
+	const std::vector<const char*> ValidationLayers = {	
+		"VK_LAYER_KHRONOS_validation",
+
+		//"VK_LAYER_GOOGLE_threading",
+		//"VK_LAYER_GOOGLE_unique_objects",
+		//"VK_LAYER_LUNARG_api_dump",
+		"VK_LAYER_LUNARG_assistant_layer",
+		"VK_LAYER_LUNARG_core_validation",
+		//"VK_LAYER_LUNARG_device_simulation",
+		//"VK_LAYER_LUNARG_monitor",
+		"VK_LAYER_LUNARG_object_tracker",
+		"VK_LAYER_LUNARG_parameter_validation",
+		//"VK_LAYER_LUNARG_screenshot",
+		//"VK_LAYER_LUNARG_standard_validation",
+		//"VK_LAYER_LUNARG_vktrace",
+		//"VK_LAYER_NV_nomad_release_public_2019_3_1",
+		//"VK_LAYER_NV_optimus",
+		//"VK_LAYER_RENDERDOC_Capture",
+		//"VK_LAYER_VALVE_steam_fossilize",
+		//"VK_LAYER_VALVE_steam_overlay",
 	};
 	CreateInfo.enabledLayerCount = (uint32_t)ValidationLayers.size();
 	CreateInfo.ppEnabledLayerNames = ValidationLayers.data();

@@ -162,7 +162,9 @@
     <ClCompile Include="glue\init.cpp" />
     <ClCompile Include="glue\vk_device.cpp" />
     <ClCompile Include="glue\vk_instance.cpp" />
+    <ClCompile Include="glue\vk_misc.cpp" />
     <ClCompile Include="glue\vk_physical_device.cpp" />
+    <ClCompile Include="glue\vk_shader.cpp" />
     <ClCompile Include="glue\vk_swapchain.cpp" />
   </ItemGroup>
   <ItemGroup>
